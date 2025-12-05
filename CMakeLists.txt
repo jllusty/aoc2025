@@ -5,18 +5,28 @@ project(AdventOfCode2025
     LANGUAGES C CXX
 )
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Point compiler + linker to the Homebrew LLVM libc++
+include_directories(/opt/homebrew/opt/llvm/include/c++/v1)
+link_directories(/opt/homebrew/opt/llvm/lib/c++)
+
+# Tell the compiler to use libc++
+add_compile_options(-stdlib=libc++)
+# Tell the linker to use libc++
+add_link_options(-stdlib=libc++)
+
+# Ensure rpath picks up Homebrew libc++ at runtime
+add_link_options(-Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-add_executable(Day1 1/main.cpp)
+set(NUM_DAYS 5)
 
-add_executable(Day2 2/main.cpp)
-
-add_executable(Day3 3/main.cpp)
-
-add_executable(Day4 4/main.cpp)
+foreach(day RANGE 1 ${NUM_DAYS})
+    add_executable(Day${day} ${day}/main.cpp)
+endforeach()
