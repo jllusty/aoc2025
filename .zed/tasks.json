@@ -1,0 +1,11 @@
+[
+  {
+    "label": "build current Day",
+    "command": "cmake",
+    "args": ["--build", "build", "--target", "$ZED_STEM", "--", "-j"]
+  },
+  {
+    "label": "reconfigure",
+    "command": "rm -rf build && cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm/bin/clang++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+  }
+]

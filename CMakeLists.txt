@@ -28,5 +28,5 @@ endif()
 set(NUM_DAYS 5)
 
 foreach(day RANGE 1 ${NUM_DAYS})
-    add_executable(Day${day} ${day}/main.cpp)
+    add_executable(Day${day} ${day}/Day${day}.cpp)
 endforeach()
