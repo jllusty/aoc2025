@@ -25,7 +25,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-set(NUM_DAYS 5)
+set(NUM_DAYS 6)
 
 foreach(day RANGE 1 ${NUM_DAYS})
     add_executable(Day${day} ${day}/Day${day}.cpp)
